@@ -1,0 +1,2 @@
+class clojure.lang.Compiler$CompilerExceptionclass clojure.lang.Compiler$CompilerExceptionSyntax error compiling at (clojure-examples:localhost:44551(clj)*:3:22).
+Unable to resolve symbol: sample-normal in this context

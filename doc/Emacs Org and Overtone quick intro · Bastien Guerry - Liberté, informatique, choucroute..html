@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Emacs Org and Overtone quick intro · Bastien Guerry - Liberté, informatique, choucroute.</title>
+        <meta name="description" content="This file will take you through installing GNU Emacs and Overtone so that you can play a few notes.
+You want to read it within GNU Emacs and Org-mode.
+Installation Install GNU Emacs If you are using Debian, ~$ apt-get install emacs will do.
+To install Emacs from sources, you can download it from here or clone the git mirror:
+~$ git clone git://git.savannah.gnu.org/emacs.git  Configure Emacs The beginning of your Emacs configuration should contain this to add =marmelade= to the list of known repositories for Emacs libraries:">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="generator" content="Hugo 0.54.0">
+        <meta name="robots" content="index,follow">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="Emacs Org and Overtone quick intro">
+<meta property="og:description" content="This file will take you through installing GNU Emacs and Overtone so that you can play a few notes.
+You want to read it within GNU Emacs and Org-mode.
+Installation Install GNU Emacs If you are using Debian, ~$ apt-get install emacs will do.
+To install Emacs from sources, you can download it from here or clone the git mirror:
+~$ git clone git://git.savannah.gnu.org/emacs.git  Configure Emacs The beginning of your Emacs configuration should contain this to add =marmelade= to the list of known repositories for Emacs libraries:">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://bzg.fr/en/emacs-org-babel-overtone-intro.html/">
+        <link rel="stylesheet" href="Emacs%20Org%20and%20Overtone%20quick%20intro%20%C2%B7%20Bastien%20Guerry%20-%20Libert%C3%A9,%20informatique,%20choucroute._files/styles.css">
+        <link rel="stylesheet" href="Emacs%20Org%20and%20Overtone%20quick%20intro%20%C2%B7%20Bastien%20Guerry%20-%20Libert%C3%A9,%20informatique,%20choucroute._files/css.css">
+	<link rel="stylesheet" href="Emacs%20Org%20and%20Overtone%20quick%20intro%20%C2%B7%20Bastien%20Guerry%20-%20Libert%C3%A9,%20informatique,%20choucroute._files/font-awesome.css">
+        
+        
+<script async="" src="Emacs%20Org%20and%20Overtone%20quick%20intro%20%C2%B7%20Bastien%20Guerry%20-%20Libert%C3%A9,%20informatique,%20choucroute._files/tracker.js" id="fathom-script"></script><script>
+(function(f, a, t, h, o, m){
+	a[h]=a[h]||function(){
+		(a[h].q=a[h].q||[]).push(arguments)
+	};
+	o=f.createElement('script'),
+	m=f.getElementsByTagName('script')[0];
+	o.async=1; o.src=t; o.id='fathom-script';
+	m.parentNode.insertBefore(o,m)
+})(document, window, '//stats.bzg.fr/tracker.js', 'fathom');
+fathom('set', 'siteId', 'MYGEY');
+fathom('trackPageview');
+</script>
+
+
+    <style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style></head>
+    <body>
+        
+
+        <div id="wrapper">
+            <header class="site-header">
+                <div class="container">
+                    <div class="site-title-wrapper">
+                        
+                        <h1 class="site-title">
+                            <a title="bzg" href="https://bzg.fr/">bzg</a>
+                        </h1>
+                        
+                        <a class="button-square" href="https://bzg.fr/index.xml"><i class="fa fa-rss"></i></a>
+                        
+                        <a class="button-square button-social hint--top" data-hint="Twitter" title="Twitter" href="https://twitter.com/bzg2">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        
+			
+                        
+                        <a class="button-square button-social hint--top" data-hint="Gitlab" title="Gitlab" href="https://gitlab.com/bzg">
+                            <i class="fa fa-gitlab"></i>
+                        </a>
+                        
+                        
+                        <a class="button-square button-social hint--top" data-hint="Github" title="Github" href="https://github.com/bzg">
+                            <i class="fa fa-github-alt"></i>
+                        </a>
+                        
+                        
+                        <a class="button-square button-social hint--top" data-hint="Stack Overflow" title="Stack Overflow" href="https://stackoverflow.com/users/1037678/bzg">
+                            <i class="fa fa-stack-overflow"></i>
+                        </a>
+                        
+                        
+                        
+                        
+                        <a class="button-square button-social hint--top" data-hint="Email" title="Email" href="mailto:bzg@bzg.fr">
+                            <i class="fa fa-envelope"></i>
+                        </a>
+                        
+                    </div>
+
+                    <ul class="site-nav">
+                        
+    <li class="site-nav-item">
+        <a title="About" href="https://bzg.fr/en/about/">About</a>
+    </li>
+
+    <li class="site-nav-item">
+        <a title="Talks" href="https://bzg.fr/en/talks/">Talks</a>
+    </li>
+
+    <li class="site-nav-item">
+        <a title="Français" href="https://bzg.fr/">Français</a>
+    </li>
+
+                    </ul>
+                </div>
+            </header>
+
+            <div id="container">
+
+
+<div class="container">
+    <article class="post-container" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Emacs Org and Overtone quick intro</h1>
+    
+    <p class="post-date">
+        <span>Publié le <time datetime="2013-12-21" itemprop="datePublished">Sat 21 Dec 2013</time></span>
+        <span>par</span>
+        <span itemscope="" itemprop="author" itemtype="https://schema.org/Person">
+            <span itemprop="name">
+                <a href="https://bzg.fr/" itemprop="url" rel="author">Bastien</a>
+            </span>
+        </span>
+    </p>
+</header>
+
+        <div class="post-content clearfix" itemprop="articleBody">
+    
+
+    <p>This file will take you through installing <a href="http://www.gnu.org/software/emacs/" title="GNU Emacs">GNU Emacs</a> and <a href="http://overtone.github.io/" title="Overtone">Overtone</a> so
+that you can play a few notes.</p>
+
+<p>You want to read it within GNU Emacs and <a href="http://orgmode.org/" title="Org-mode">Org-mode</a>.</p>
+<!-- A PDF version is available [[http://bzg.fr/u/org-overtone-intro.pdf][here]]. -->
+
+<h1 id="installation">Installation</h1>
+
+<h2 id="install-gnu-emacs">Install GNU Emacs</h2>
+
+<p>If you are using Debian, <code>~$ apt-get install emacs</code> will do.</p>
+
+<p>To install Emacs from sources, you can download it from <a href="ftp://ftp.gnu.org/pub/gnu/emacs/" title="here">here</a> or clone
+the git mirror:</p>
+<pre class="example">~$ git clone git://git.savannah.gnu.org/emacs.git
+</pre>
+
+<h2 id="configure-emacs">Configure Emacs</h2>
+
+<p>The beginning of your Emacs configuration should contain this to add
+=marmelade= to the list of known repositories for Emacs libraries:</p>
+
+<pre><code class="language-emacs-lisp">(require 'package)
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
+</code></pre>
+
+<p>Now hit <code>C-c C-v C-t</code> to <em>tangle</em> all Emacs Lisp code blocks from this
+file into a new <code>emacs.el</code> file in the same directory.</p>
+
+<p>When done, go check this new <code>emacs.el</code>.</p>
+
+<p>You can use this <code>emacs.el</code> to load the minimal configuration needed
+for this tutorial.</p>
+
+<h2 id="install-cider-was-nrepl-el">Install Cider (was "nrepl.el")</h2>
+
+<p>Now run Emacs like this:</p>
+<pre class="example">~$ emacs -l /path/to/overtone-intro/emacs.el
+</pre>
+
+<p>In Emacs, get the list of packages:</p>
+
+<p><code>M-x list-packages RET</code></p>
+
+<p>and install <code>cider</code> from that list.</p>
+
+<p>*Note*: This will also install <code>clojure-mode-2.0.0</code>, <code>cl-lib-0.3</code>,
+=dash-2.1.0= and <code>pkg-info-0.3</code>.</p>
+
+<h2 id="install-org-mode">Install Org-mode</h2>
+
+<p>Install the latest version of <a href="http://orgmode.org/" title="Org-mode">Org-mode</a>:</p>
+<pre class="example">~$ git clone git://orgmode.org/org-mode.git
+~$ cd org-mode
+~$ make autoloads
+</pre>
+
+<p>This will compile Emacs Lisp files in the <code>org-mode/lisp/</code> directory
+and create <code>org-loaddefs.el</code>, containing the necessary autoloads.</p>
+
+<h2 id="configure-org-mode">Configure Org-mode</h2>
+
+<p>This simple Org configuration should do:</p>
+
+<pre><code class="language-emacs-lisp">(add-to-list 'load-path "~/install/git/org-mode/")
+(require 'org)
+
+;; We only need Emacs Lisp and Clojure in this tutorial:
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (clojure . t)))
+
+;; Use cider as the clojure execution backend
+(setq org-babel-clojure-backend 'cider)
+
+;; Let's have pretty source code blocks
+(setq org-edit-src-content-indentation 0
+      org-src-tab-acts-natively t
+      org-src-fontify-natively t
+      org-confirm-babel-evaluate nil)
+</code></pre>
+
+<h2 id="configure-cider">Configure cider</h2>
+
+<pre><code class="language-emacs-lisp">;; Cider configuration
+(require 'cider)
+(setq nrepl-hide-special-buffers t
+      cider-repl-pop-to-buffer-on-connect nil
+      cider-popup-stacktraces nil
+      cider-repl-popup-stacktraces t)
+</code></pre>
+
+<h2 id="install-leiningen">Install leiningen</h2>
+
+<p><a href="http://leiningen/" title="leiningen">leiningen</a> is the <em>de facto</em> standard for running Clojure projects.</p>
+
+<p>Check the very simple <a href="http://leiningen.org/#install" title="installation instructions">installation instructions</a>.</p>
+
+<h2 id="install-supercollider">Install SuperCollider</h2>
+
+<p>Supercollider is the audio synthetizer.</p>
+
+<p>You need it to play sounds with Overtone.</p>
+
+<p>On Debian, you can install SuperCollider the usual way: <code>~$ apt-get
+install supercollider</code>.</p>
+
+<p>For other platforms, see the supercollider <a href="http://supercollider.sourceforge.net/downloads/" title="downloads page">downloads page</a>.</p>
+
+<p>In this tutorial, we will play piano, so we need the <a href="http://sourceforge.net/projects/sc3-plugins/" title="sc3-plugins">sc3-plugins</a>.</p>
+
+<p>If you want to compile supercollider and sc3-plugins from sources,
+check <a href="https://github.com/overtone/overtone/wiki/Compiling-SuperCollider" title="this page">this page</a> from the Overtone wiki.</p>
+
+<h2 id="overtone-as-a-dependency-in-project-clj">Overtone as a dependency in project.clj</h2>
+
+<p>Previously, we hit <code>C-c C-v C-t</code> to tangle Emacs Lisp code blocks into
+=emacs.el=.  Since <code>C-c C-v C-t</code> tangles <em>all blocks</em> in the buffer,
+we also created <code>project.clj</code>, which is needed in order to run <code>lein=
+and to let =cider</code> interact with <code>lein</code>.</p>
+
+<pre><code class="language-clojure">(defproject overtone-intro "1.0"
+  :dependencies [[org.clojure/clojure "1.5.1"]
+                 [overtone "0.9.1"]])
+</code></pre>
+
+<p>From the <code>overtone-intro</code> directory, run <code>~$ lein deps</code> to load all
+dependencies.</p>
+
+<h2 id="additional-keybindings">Additional keybindings</h2>
+
+<p>During the live demo, I used these keybindings:</p>
+
+<pre><code class="language-emacs-lisp">;; Useful keybindings when using Clojure from Org
+(org-defkey org-mode-map "\C-x\C-e" 'cider-eval-last-sexp)
+(org-defkey org-mode-map "\C-c\C-d" 'cider-doc)
+</code></pre>
+
+<p>They allow to execute a Clojure source code block by hitting <code>C-x C-e=
+after a Clojure sexp, and to get a Clojure docstring by hitting =C-c
+C-d</code> after a symbol.</p>
+
+<p>If you don't use these keybindings, executing source code blocks is
+done by hitting <code>C-c C-c</code> on the <code>#+BEGIN_SRC</code> line.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>This is an overview of my configuration:</p>
+
+<table>
+<thead>
+<tr>
+<th>Prog/Package</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GNU Emacs</td>
+<td>24.3.50.1</td>
+</tr>
+
+<tr>
+<td>CIDER</td>
+<td>0.5</td>
+</tr>
+
+<tr>
+<td>auto-complete</td>
+<td>1.4.0</td>
+</tr>
+
+<tr>
+<td>dash.el</td>
+<td>2.3.0</td>
+</tr>
+
+<tr>
+<td>pkg-info</td>
+<td>0.4</td>
+</tr>
+
+<tr>
+<td>Org-mode</td>
+<td>8.2.4</td>
+</tr>
+
+<tr>
+<td>Clojure</td>
+<td>1.5.1</td>
+</tr>
+
+<tr>
+<td>Overtone</td>
+<td>0.9.1</td>
+</tr>
+</tbody>
+</table>
+
+<p>The tutorial should work with older versions of Emacs, but you need to
+install Org-mode from its master branch to use <a href="https://github.com/clojure-emacs/cider" title="cider">cider</a>.</p>
+
+<p>Also, remember to hit <code>TAB</code> for (un)folding a section or a source code
+block.</p>
+
+<h1 id="connect-to-the-repl">Connect to the repl</h1>
+
+<p>To connect the current Org buffer to a repl, run</p>
+
+<p><code>M-x cider-jack-in RET</code></p>
+
+<p>... and wait until you get a confirmation message in the minibuffer.</p>
+
+<p>Do this now, you'll need it soon.</p>
+
+<h1 id="a-quick-intro-to-org-babel">A quick intro to Org Babel</h1>
+
+<p>To get a gist of what Org Babel is, hit <code>C-c C-c</code> on the =#+BEGIN_SRC=
+line below:</p>
+
+<pre><code class="language-emacs-lisp">(message "Yeah!")
+</code></pre>
+
+<p>Emacs minibuffer displays the output: yeah!</p>
+
+<h2 id="babel-vars">Babel: vars</h2>
+
+<p>You can bind variables in Babel source code blocks---hit <code>C-c C-c</code> on
+the code blocks below:</p>
+
+<pre><code class="language-emacs-lisp">(message (number-to-string n))
+</code></pre>
+
+<pre><code class="language-clojure">(-&gt; n inc (+ m))
+</code></pre>
+
+<h2 id="babel-lists">Babel: lists</h2>
+
+<p>Okay, you get it: hit <code>C-c C-c</code> on code blocks to execute them.</p>
+
+<ul>
+<li>simple</li>
+<li>list</li>
+</ul>
+
+<pre><code class="language-emacs-lisp">(print x)
+</code></pre>
+
+<pre><code class="language-clojure">(map clojure.string/upper-case x)
+</code></pre>
+
+<h2 id="babel-tables">Babel: tables</h2>
+
+<table>
+<tbody>
+<tr>
+<td>1</td>
+<td>a</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>b</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>c</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>d</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-emacs-lisp">data
+</code></pre>
+
+<h1 id="a-quick-intro-to-overtone">A quick intro to Overtone</h1>
+
+<h2 id="overtone-loading-and-booting">Overtone: loading and booting</h2>
+
+<pre><code class="language-clojure">(use 'overtone.core)
+</code></pre>
+
+<pre><code class="language-clojure">(boot-external-server)
+</code></pre>
+
+<p>*Note*: I'm using GNU/Linux, and I didn't take the time to configure
+jackd properly.  You may want to use this instead:</p>
+
+<pre><code class="language-clojure">(use 'overtone.live)
+(boot-internal-server)
+</code></pre>
+
+<h2 id="overtone-playing-fooling-around">Overtone: playing/fooling around</h2>
+
+<p>*Note*: the first time you use the <code>overtone.inst.piano</code> namespace, it
+will load quite a lot of files from freesound.org -- you may want to
+do this within a bare <code>lein repl</code> in order to make sure the process is
+over.</p>
+
+<pre><code class="language-clojure">(use 'overtone.inst.piano)
+</code></pre>
+
+<p>Play a simple midi note:</p>
+
+<pre><code class="language-clojure">(piano 60)
+</code></pre>
+
+<pre><code class="language-clojure">(doseq [note (chord :C3)] (piano note))
+</code></pre>
+
+<pre><code class="language-clojure">(doseq [note (chord :E3 :minor)] (piano note))
+</code></pre>
+
+<pre><code class="language-clojure">(defn play-chord [chord]
+  (doseq [note chord] (piano note)))
+
+(play-chord (chord :A3 :minor))
+</code></pre>
+
+<pre><code class="language-clojure">(let [time (now)]
+  (at time (play-chord (chord :C3 :major)))
+  (at (+ 1000 time) (play-chord (chord :C3 :major7)))
+  (at (+ 2000 time) (play-chord (chord :E3 :minor)))
+  (at (+ 3000 time) (play-chord (chord :A2 :minor))))
+</code></pre>
+
+<p><code>defsynth</code> and <code>definst</code> are the two entry points for creating sounds
+and instruments -- go check their docstrings, they explain a lot.</p>
+
+<pre><code class="language-clojure">(defsynth bar [freq 440]
+  (out 0 (sin-osc freq)))
+
+(bar 500)
+(kill bar)
+(stop)
+
+(definst beep [note 60]
+  (let [sound-src (sin-osc (midicps note))
+	env (env-gen (perc 0.01 1.0) :action FREE)] ; sam uses :free
+    (* sound-src env)))
+
+(beep 60)
+
+(defsynth pad1 [freq 110 amp 1 gate 1 out-bus 0]
+  (out out-bus
+       (* (saw [freq (* freq 1.01)])
+	  (env-gen (adsr 0.01 0.1 0.7 0.5) :gate gate :action FREE))))
+
+(pad1)
+(stop)
+
+;; Let's try something a bit crazy
+(for [i (range 200)] (at (+ (now) (* i 20)) (beep i)))
+</code></pre>
+
+<p>Some more copy-and-paste from overtone's wiki:</p>
+
+<pre><code class="language-clojure">(map piano [60 63 67])
+(map piano (map note [:C3 :E4 :G4]))
+(map piano (map note [:C#5 :E4 :G4]))
+(map piano (map note [:Cb2 :E4 :G4]))
+
+(definst steel-drum [note 60 amp 0.8]
+  (let [freq (midicps note)]
+    (* amp
+       (env-gen (perc 0.01 0.2) 1 1 0 1 :action FREE)
+       (+ (sin-osc (/ freq 2))
+	  (rlpf (saw freq) (* 1.1 freq) 0.4)))))
+
+(steel-drum (note :E3))
+(map steel-drum (map note [:E3 :D#4]))
+</code></pre>
+
+<h2 id="overtone-loading-wav-samples">Overtone: loading .wav samples</h2>
+
+<pre><code class="language-clojure">;; Hint: adapt this to your own .wav files
+(def noa (sample "/path/to/a/file.wav"))
+
+(let []
+  (noa)
+  (Thread/sleep 3000)
+  (piano (note :Cb3))
+  (piano 68))
+
+(stop)
+</code></pre>
+
+<h2 id="overtone-using-freesound-org">Overtone: using freesound.org</h2>
+
+<p>You can download samples directly from freesound.org via Overtone:</p>
+
+<pre><code class="language-clojure">(def snare (sample (freesound-path 26903)))
+(snare)
+(def clic (sample (freesound-path 406)))
+(clic)
+(def steam (sample (freesound-path 30628)))
+(steam)
+(def clap (sample (freesound-path 48310)))
+(clap)
+(def clap2 (sample (freesound-path 132676)))
+(clap2)
+(def boom (sample (freesound-path 80401)))
+(boom)
+</code></pre>
+
+<h1 id="why-i-love-this">Why I love this?</h1>
+
+<ul>
+<li>I love sounds.</li>
+</ul>
+
+<ul>
+<li>I love Org+Cider /reactivity/: evaluating Clojure sexps is fast.</li>
+</ul>
+
+<ul>
+<li>I love building (mostly random) sounds so fast, it feels like</li>
+  <em>sculpting</em> music.
+</ul>
+
+<h1 id="issues">Issues</h1>
+
+<p>If you run into issues while following this tutorial, please report
+them on <a href="https://github.com/bzg/org-overtone-intro" title="github">github</a>.</p>
+
+<h1 id="exploring-further">Exploring further</h1>
+
+<ul>
+<li>https://github.com/overtone/overtone</li>
+<li>https://github.com/overtone/overtone/blob/master/src/overtone/samples/freesound.clj</li>
+<li>http://skillsmatter.com/podcast/home/functional-composition</li>
+<li>http://blog.josephwilk.net/clojure/creating-instruments-with-overtone.html</li>
+<li>http://www.tonalsoft.com/pub/news/pitch-bend.aspx</li>
+<li>http://www.freesound.org/</li>
+</ul>
+
+</div>
+        <footer class="post-footer clearfix">
+    <p class="follow-me">
+	More? Follow me on <a href="http://twitter.com/bzg2">Twitter</a> or <a href="https://mastodon.etalab.gouv.fr/web/accounts/685">Mastodon</a>&nbsp;!
+    </p>
+
+    
+    <p class="post-tags">
+        <span>Tags&nbsp;:</span>
+        
+        
+        <a href="https://bzg.fr/en/tags/emacs/">emacs</a>, 
+        
+        <a href="https://bzg.fr/en/tags/org-mode/">org-mode</a>, 
+        
+        <a href="https://bzg.fr/en/tags/overtone/">overtone</a>, 
+        
+        <a href="https://bzg.fr/en/tags/tutorial/">tutorial</a>
+        
+    </p>
+    
+
+    <div class="share">
+        
+        <a class="icon-twitter" href="https://twitter.com/share?text=Emacs%20Org%20and%20Overtone%20quick%20intro&amp;url=https%3a%2f%2fbzg.fr%2fen%2femacs-org-babel-overtone-intro.html%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <i class="fa fa-twitter"></i>
+            <span class="hidden">Twitter</span>
+        </a>
+        
+    </div>
+</footer>
+
+    </article>
+</div>
+
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="site-title-wrapper">
+                    <h1 class="site-title">
+                        <a title="bzg" href="https://bzg.fr/">bzg</a>
+                    </h1>
+                    <a class="button-square button-jump-top js-jump-top" href="#">
+                        <i class="fa fa-angle-up"></i>
+                    </a>
+                </div>
+
+                <p class="footer-copyright">
+                    <span>© 2019 / Powered by <a href="https://gohugo.io/">Hugo</a></span>
+                </p>
+                <p class="footer-copyright">
+                    <span><a href="https://github.com/roryg/ghostwriter">Ghostwriter theme</a> By <a href="http://jollygoodthemes.com/">JollyGoodThemes</a></span>
+                    <span>/ <a href="https://github.com/jbub/ghostwriter">Ported</a> to Hugo By <a href="https://github.com/jbub">jbub</a></span>
+                </p>
+            </div>
+        </footer>
+
+        <script src="Emacs%20Org%20and%20Overtone%20quick%20intro%20%C2%B7%20Bastien%20Guerry%20-%20Libert%C3%A9,%20informatique,%20choucroute._files/jquery-1.js"></script>
+        <script src="Emacs%20Org%20and%20Overtone%20quick%20intro%20%C2%B7%20Bastien%20Guerry%20-%20Libert%C3%A9,%20informatique,%20choucroute._files/jquery.js"></script>
+        
+        
+            <script src="Emacs%20Org%20and%20Overtone%20quick%20intro%20%C2%B7%20Bastien%20Guerry%20-%20Libert%C3%A9,%20informatique,%20choucroute._files/highlight.js"></script>
+        
+        
+        <script src="Emacs%20Org%20and%20Overtone%20quick%20intro%20%C2%B7%20Bastien%20Guerry%20-%20Libert%C3%A9,%20informatique,%20choucroute._files/scripts.js"></script>
+    
+
+
+</body></html>
